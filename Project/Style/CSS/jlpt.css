@@ -81,28 +81,42 @@
     transform: scale(1.2); /* Increase the scale factor to make it bigger */
 }
 
-/* Onyomi and Kunyomi Layout */
 #onyomi-kunyomi {
     display: flex;
-    justify-content:center;
-    gap: 5px;
-    width: 100%; /* Ensure they fill the space evenly */
+    flex-direction: row;
+    justify-content: center;
 }
 
-#onyomi {
-    font-size: 1.5rem; /* Increased font size */
-    color: #333;
-    background-color: rgba(0, 128, 0, 0.3); /* Transparent green */
-    padding: 15px; /* Increased padding */
-    border-radius: 5px;
+/* Onyomi and Kunyomi Layout */
+#onyomi-container, #kunyomi-container {
+    display: flex;
+    flex-wrap: nowrap; /* Ensure items stay in a single row */
+    gap: 0.5rem; /* Space between each block */
+    overflow-x: auto; /* Allows horizontal scrolling if there are too many blocks */
+    padding-bottom: 10px; /* Ensure there's space for the scroll bar if needed */
+    align-items: center; /* Align items to the center */
 }
 
-#kunyomi {
-    font-size: 1.5rem; /* Increased font size */
+/* Onyomi and Kunyomi Block Styling */
+.onyomi-block, .kunyomi-block {
+    white-space: nowrap; /* Prevent text wrapping inside blocks */
+    background-color: #f0f0f0;
     color: #333;
-    background-color: rgba(0, 0, 255, 0.3); /* Transparent blue */
-    padding: 15px; /* Increased padding */
-    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: inline-block; /* Ensure each block stays inline */
+    margin: 5px;
+}
+
+.onyomi-block {
+    background-color: rgba(0, 128, 0, 0.3); /* Green background */
+}
+
+.kunyomi-block {
+    background-color: rgba(0, 0, 255, 0.3); /* Blue background */
 }
 
 #kanji-meaning, #radical {

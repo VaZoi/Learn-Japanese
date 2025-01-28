@@ -52,8 +52,12 @@ if ($currentIndex < 0 || $currentIndex >= count($kanjiData)) {
                         <div id="kanji-item">
                             <div id="stroke-order"></div> <!-- Container for dynamic SVG -->
                             <div id="onyomi-kunyomi">
-                                <div id="onyomi"></div>
-                                <div id="kunyomi"></div>
+                                <div id="onyomi-container">
+                                    <div id="onyomi"></div>
+                                </div>
+                                <div id="kunyomi-container">
+                                    <div id="kunyomi"></div>
+                                </div>
                             </div>
                             <p id="kanji-meaning"><?php echo htmlspecialchars($kanjiData[$currentIndex]['kanji_meaning']); ?></p>
                             <p id="radical"><?php echo htmlspecialchars($kanjiData[$currentIndex]['radicals']); ?></p>
@@ -86,14 +90,39 @@ let currentIndex = <?php echo $currentIndex; ?>;
 function updateKanjiDisplay() {
     const kanji = kanjiData[currentIndex];
     
+    // Update kanji meaning and radical
     document.getElementById('kanji-meaning').innerText = kanji.kanji_meaning;
     document.getElementById('radical').innerText = kanji.radicals;
-    document.getElementById('onyomi').innerText = kanji.onyomi_readings;
-    document.getElementById('kunyomi').innerText = kanji.kunyomi_readings;
 
+    // Clear previous onyomi and kunyomi blocks
+    const onyomiContainer = document.getElementById('onyomi');
+    const kunyomiContainer = document.getElementById('kunyomi');
+    onyomiContainer.innerHTML = '';
+    kunyomiContainer.innerHTML = '';
+
+    // Add onyomi readings as blocks
+    if (kanji.onyomi_readings) {
+        kanji.onyomi_readings.split(',').forEach((reading) => {
+            const block = document.createElement('div');
+            block.className = 'onyomi-block';
+            block.innerText = reading.trim();
+            onyomiContainer.appendChild(block);
+        });
+    }
+
+    // Add kunyomi readings as blocks
+    if (kanji.kunyomi_readings) {
+        kanji.kunyomi_readings.split(',').forEach((reading) => {
+            const block = document.createElement('div');
+            block.className = 'kunyomi-block';
+            block.innerText = reading.trim();
+            kunyomiContainer.appendChild(block);
+        });
+    }
+
+    // Display the SVG content directly in the 'stroke-order' div
     const svgContent = kanji.stroke_order;
     const strokeOrderElement = document.getElementById('stroke-order');
-
     if (svgContent) {
         strokeOrderElement.innerHTML = svgContent;
     } else {
@@ -108,6 +137,7 @@ function updateKanjiDisplay() {
     url.searchParams.set('index', currentIndex);
     window.history.pushState({}, '', url);
 }
+
 
 // Navigate to the previous Kanji
 function showPrevKanji() {
