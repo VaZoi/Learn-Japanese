@@ -1,0 +1,175 @@
+/* Kanji layout container */
+.kanji-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 20px;
+}
+
+/* Mini Kanji buttons container */
+.mini-kanji-buttons-container {
+    width: 20%;
+    overflow-y: auto;
+}
+
+.mini-kanji-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.mini-kanji {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.mini-kanji:hover {
+    background-color: #007BFF;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Kanji display container */
+.kanji-display-container {
+    width: 75%;
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 10px;
+    border-left:solid 2px rgba(0, 0, 0, 0.404);
+    height: 80%; /* Reduced height */
+    max-width: 100%; /* Prevent overflow */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.kanji-display {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center; /* Center the content */
+    max-width: 100%;
+    width: auto;
+}
+
+/* Kanji item layout */
+#kanji-item {
+    text-align: center;
+}
+
+/* Stroke Order container */
+#stroke-order {
+    margin-bottom: 30px;
+    max-width: 100%; /* Prevent stroke order from being too wide */
+    width: 100%; /* Ensure the SVG fits properly */
+    height: 350px; /* Set a fixed height to make the SVG bigger */
+    overflow: hidden; /* Hide any overflow from the SVG */
+}
+
+/* Ensure SVG inside #stroke-order is larger */
+#stroke-order svg {
+    width: 100%; /* Make the SVG take up full width */
+    height: 100%; /* Ensure the SVG takes full height */
+    object-fit: contain; /* Scale the SVG proportionally */
+    transform: scale(1.2); /* Increase the scale factor to make it bigger */
+}
+
+/* Onyomi and Kunyomi Layout */
+#onyomi-kunyomi {
+    display: flex;
+    justify-content:center;
+    gap: 5px;
+    width: 100%; /* Ensure they fill the space evenly */
+}
+
+#onyomi {
+    font-size: 1.5rem; /* Increased font size */
+    color: #333;
+    background-color: rgba(0, 128, 0, 0.3); /* Transparent green */
+    padding: 15px; /* Increased padding */
+    border-radius: 5px;
+}
+
+#kunyomi {
+    font-size: 1.5rem; /* Increased font size */
+    color: #333;
+    background-color: rgba(0, 0, 255, 0.3); /* Transparent blue */
+    padding: 15px; /* Increased padding */
+    border-radius: 5px;
+}
+
+#kanji-meaning, #radical {
+    font-size: 1.6rem; /* Larger font size */
+    font-weight: bold;
+    color: #555;
+    margin-top: 20px;
+}
+
+/* Navigation buttons */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin: 5px;
+    width: 100%; /* Full width for navigation buttons */
+}
+
+.navigation-buttons button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem; /* Increased font size */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.navigation-buttons button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.title{
+    position:fixed ;
+    margin-left: 90px;
+    margin-top: 80px;
+    z-index: 1;
+    font-size: xx-large;
+}
+/* Kanji index display */
+.kanji-index {
+    margin-top: 20px;
+    font-size: 1.3rem; /* Increased font size */
+    color: #333;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .kanji-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .mini-kanji-buttons-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .kanji-display-container {
+        width: 100%;
+    }
+
+    .navigation-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

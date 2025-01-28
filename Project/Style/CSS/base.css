@@ -1,0 +1,96 @@
+/* General Styles for Body and Layout */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the body takes up at least the full viewport height */
+    margin: 0;
+}
+/* Footer Styles */
+footer {
+    text-align: center;
+    margin-top: auto; /* Push footer to the bottom of the page */
+    width: 100%;
+}
+
+/* General Navbar Styles */
+.header {
+    font-size: larger;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a, .dropbtn {
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover, .dropdown:hover .dropbtn {
+    border-bottom: solid 2px rgb(0, 47, 255); /* Change on hover */
+  }
+  
+  li.dropdown {
+    display: inline-block;
+  }
+  
+  /* Dropdown Menu Styles */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Show Dropdown on Hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* For mobile responsiveness */
+  @media (max-width: 768px) {
+    ul {
+      text-align: center;
+    }
+  
+    li {
+      float: none;
+    }
+  
+    .dropdown-content {
+      position: static;
+      width: 100%;
+    }
+  }
+  
