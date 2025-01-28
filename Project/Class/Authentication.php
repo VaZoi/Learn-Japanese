@@ -58,14 +58,24 @@ class Authentication
     /**
      * Create a session for the user
      */
-    public function createSession($userId, $token, $expiresAt) {
+    public function createSession($userId, $token, $expiresAt = null) {
+        // Default the expiration to 1 week if not provided
+        if (!$expiresAt) {
+            $expiresAt = date('Y-m-d H:i:s', strtotime('+1 week')); // 1 week from now
+        }
+    
+        // Store the session in the database
         $sql = "INSERT INTO sessions (user_id, session_token, expires_at) VALUES (:user_id, :session_token, :expires_at)";
         $this->execute($sql, [
             ':user_id' => $userId,
             ':session_token' => $token,
             ':expires_at' => $expiresAt
         ]);
+    
+        // Set the cookie with the session token (1 week expiration)
+        setcookie('session_token', $token, time() + (7 * 24 * 60 * 60), '/', '', false, true); // HTTPOnly for security
     }
+    
 
     /**
      * Validate a session
@@ -73,8 +83,17 @@ class Authentication
     public function validateSession($token) {
         $sql = "SELECT * FROM sessions WHERE session_token = :token AND expires_at > NOW()";
         $stmt = $this->execute($sql, [':token' => $token]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $session = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if ($session) {
+            return $session; // Valid session
+        }
+    
+        // Optionally: Clean up expired session if it exists in the database
+        $this->logoutUser($token);
+        return false;
     }
+    
 
     /**
      * Logout a user (delete session)
@@ -94,31 +113,34 @@ class Authentication
             header('Location: login.php'); // Redirect to login if not logged in
             exit;
         }
-
+    
         $sessionToken = $_COOKIE['session_token'];
-
+    
         // Validate the session
-        $session = $this->validateSession($sessionToken); // This calls the existing validateSession function
+        $session = $this->validateSession($sessionToken);
         if (!$session) {
-            header('Location: login.php'); // Redirect to login if session is invalid or expired
+            // If session is invalid or expired, redirect to login
+            setcookie('session_token', '', time() - 72000, '/'); // Expire the cookie
+            header('Location: login.php');
             exit;
         }
-
+    
         // Fetch user data based on session
         $userId = $session['user_id'];
         $sql = "SELECT * FROM users WHERE id = :user_id";
         $stmt = $this->dbh->execute($sql, [':user_id' => $userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    
         if (!$user) {
             // If user not found, logout and redirect to login
-            setcookie('session_token', '', time() - 86400, '/'); // Expire the cookie
+            setcookie('session_token', '', time() - 72000, '/'); // Expire the cookie
             header('Location: login.php');
             exit;
         }
-
+    
         return $user; // Return user data for use in the page
     }
+    
 
 }
 $myDB = new DB();

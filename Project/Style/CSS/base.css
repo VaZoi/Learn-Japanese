@@ -22,7 +22,7 @@ footer {
     padding: 20px 0;
 }
 
-ul {
+header ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -31,11 +31,11 @@ ul {
     font-family: Arial, sans-serif;
   }
   
-  li {
+  header li {
     float: left;
   }
   
-  li a, .dropbtn {
+  header li a, .dropbtn {
     display: inline-block;
     color: rgb(0, 0, 0);
     text-align: center;
@@ -43,11 +43,11 @@ ul {
     text-decoration: none;
   }
   
-  li a:hover, .dropdown:hover .dropbtn {
+  header li a:hover, .dropdown:hover .dropbtn {
     border-bottom: solid 2px rgb(0, 47, 255); /* Change on hover */
   }
   
-  li.dropdown {
+  header li.dropdown {
     display: inline-block;
   }
   
@@ -80,11 +80,11 @@ ul {
   
   /* For mobile responsiveness */
   @media (max-width: 768px) {
-    ul {
+    header ul {
       text-align: center;
     }
   
-    li {
+    header li {
       float: none;
     }
   

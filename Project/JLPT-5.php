@@ -5,17 +5,17 @@ require_once('Class/JLPT.php');
 
 $user = $auth->validateUserSession();
 
+// Get the kanji index from the URL (default to 0 if not provided)
+$currentIndex = isset($_GET['index']) ? (int)$_GET['index'] : 0;
+
+// Fetch Kanji data
 $kanjiData = $JLPT->fetchKanjiWithDetails('JLPT N5');
-?>
 
-<?php
+// Ensure the index is within bounds
+if ($currentIndex < 0 || $currentIndex >= count($kanjiData)) {
+    $currentIndex = 0;
+}
 
-require_once('Class/Authentication.php');
-require_once('Class/JLPT.php');
-
-$user = $auth->validateUserSession();
-
-$kanjiData = $JLPT->fetchKanjiWithDetails('JLPT N5');
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ $kanjiData = $JLPT->fetchKanjiWithDetails('JLPT N5');
     <script src="Style/Javascript/footer.js" defer></script>
     <link rel="stylesheet" href="Style/CSS/base.css">
     <link rel="stylesheet" href="Style/CSS/jlpt.css">
-    <title>Dashboard</title>
+    <title>JLPT N5 - Kanji</title>
 </head>
 <body>
 <header id="header" class="header"></header>
@@ -55,8 +55,8 @@ $kanjiData = $JLPT->fetchKanjiWithDetails('JLPT N5');
                                 <div id="onyomi"></div>
                                 <div id="kunyomi"></div>
                             </div>
-                            <p id="kanji-meaning"><?php echo htmlspecialchars($kanjiData[0]['kanji_meaning']); ?></p>
-                            <p id="radical"><?php echo htmlspecialchars($kanjiData[0]['radicals']); ?></p>
+                            <p id="kanji-meaning"><?php echo htmlspecialchars($kanjiData[$currentIndex]['kanji_meaning']); ?></p>
+                            <p id="radical"><?php echo htmlspecialchars($kanjiData[$currentIndex]['radicals']); ?></p>
                         </div>
 
                         <!-- Navigation Buttons -->
@@ -72,7 +72,7 @@ $kanjiData = $JLPT->fetchKanjiWithDetails('JLPT N5');
         </div>
 
         <div class="kanji-index">
-            <span id="kanji-index">1 / <?php echo count($kanjiData); ?></span>
+            <span id="kanji-index"><?php echo $currentIndex + 1; ?> / <?php echo count($kanjiData); ?></span>
         </div>
     </div>
 </main>
@@ -80,8 +80,9 @@ $kanjiData = $JLPT->fetchKanjiWithDetails('JLPT N5');
 
 <script>
 const kanjiData = <?php echo json_encode($kanjiData); ?>;
-let currentIndex = 0;
+let currentIndex = <?php echo $currentIndex; ?>;
 
+// Update the Kanji display
 function updateKanjiDisplay() {
     const kanji = kanjiData[currentIndex];
     
@@ -90,12 +91,10 @@ function updateKanjiDisplay() {
     document.getElementById('onyomi').innerText = kanji.onyomi_readings;
     document.getElementById('kunyomi').innerText = kanji.kunyomi_readings;
 
-    // Display the SVG content directly in the 'stroke-order' div
     const svgContent = kanji.stroke_order;
     const strokeOrderElement = document.getElementById('stroke-order');
 
     if (svgContent) {
-        // Directly inject the SVG content as HTML
         strokeOrderElement.innerHTML = svgContent;
     } else {
         strokeOrderElement.innerHTML = 'No SVG available.';
@@ -103,9 +102,14 @@ function updateKanjiDisplay() {
 
     // Update the index display
     document.getElementById('kanji-index').innerText = `${currentIndex + 1} / ${kanjiData.length}`;
+
+    // Update the URL to include the selected Kanji index
+    const url = new URL(window.location);
+    url.searchParams.set('index', currentIndex);
+    window.history.pushState({}, '', url);
 }
 
-// Functions to navigate between Kanji
+// Navigate to the previous Kanji
 function showPrevKanji() {
     if (currentIndex > 0) {
         currentIndex--;
@@ -113,6 +117,7 @@ function showPrevKanji() {
     }
 }
 
+// Navigate to the next Kanji
 function showNextKanji() {
     if (currentIndex < kanjiData.length - 1) {
         currentIndex++;
@@ -120,12 +125,13 @@ function showNextKanji() {
     }
 }
 
+// Navigate to a specific Kanji by index
 function goToKanji(index) {
     currentIndex = index;
     updateKanjiDisplay();
 }
 
-// Initialize the display with the first Kanji
+// Initialize the Kanji display
 updateKanjiDisplay();
 </script>
 </body>
