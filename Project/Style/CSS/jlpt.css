@@ -10,6 +10,7 @@
 .mini-kanji-buttons-container {
     width: 20%;
     overflow-y: auto;
+    height: 600px;
 }
 
 .mini-kanji-buttons {
@@ -165,6 +166,45 @@
     color: #333;
     font-weight: bold;
     margin-left: 30px;
+}
+
+.info {
+    position: fixed;
+    top: 20px;   /* Adjust distance from the top */
+    right: 20px; /* Adjust distance from the right */
+    color: rgb(0, 0, 0);
+    padding: 15px 20px; /* Increased padding for better spacing */
+    border-radius: 8px; /* Slightly rounded corners for a smoother look */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow to make the box pop */
+    z-index: 1000; /* Make sure it stays on top of other content */
+    width: 250px; /* Adjusted width for better readability */
+    font-family: Arial, sans-serif; /* Modern, clean font */
+    font-size: 16px; /* Slightly larger text for easier readability */
+    line-height: 1.5; /* Increased line height for better text spacing */
+}
+
+.info h3 {
+    font-size: 18px; /* Slightly larger heading */
+    margin-bottom: 10px; /* Space between the heading and list */
+    font-weight: bold;
+}
+
+.info ul {
+    list-style-type: disc; /* Make the list items have a bullet point */
+    padding-left: 20px; /* Indentation for list items */
+}
+
+.info ul li {
+    margin-bottom: 8px; /* Space between list items */
+}
+
+.info .onyomi-block, .kunyomi-block {
+    color: black;
+}
+
+.info p {
+    text-align: center;
+    font-weight: bold;
 }
 
 /* Responsive Design */

@@ -47,13 +47,6 @@ main {
     font-size: 1rem;
 }
 
-.info figure {
-    font-size: 0.9rem;
-    color: #888;
-    margin-top: 1rem;
-    text-align: center;
-}
-
 /* Features section */
 .features {
     margin-bottom: 2rem;
@@ -165,4 +158,47 @@ main {
 
 .recommend a:hover {
     text-decoration: underline;
+}
+
+.current-issues {
+    position: fixed;
+    bottom: 20px;   /* Adjust distance from the top */
+    right: 20px; /* Adjust distance from the right */
+    background-color: rgba(255, 0, 0, 0.8); /* Bright red background with transparency */
+    color: white;
+    padding: 15px 20px; /* Increased padding for better spacing */
+    border-radius: 8px; /* Slightly rounded corners for a smoother look */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow to make the box pop */
+    z-index: 1000; /* Make sure it stays on top of other content */
+    width: 350px; /* Adjusted width for better readability */
+    font-family: Arial, sans-serif; /* Modern, clean font */
+    font-size: 16px; /* Slightly larger text for easier readability */
+    line-height: 1.5; /* Increased line height for better text spacing */
+}
+
+.current-issues h3 {
+    font-size: 18px; /* Slightly larger heading */
+    margin-bottom: 10px; /* Space between the heading and list */
+    font-weight: bold;
+}
+
+.current-issues ul {
+    list-style-type: disc; /* Make the list items have a bullet point */
+    padding-left: 20px; /* Indentation for list items */
+}
+
+.current-issues ul li {
+    margin-bottom: 8px; /* Space between list items */
+}
+
+.credit figure {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.credit p {
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
 }

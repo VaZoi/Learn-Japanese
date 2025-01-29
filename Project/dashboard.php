@@ -19,6 +19,15 @@ $user = $auth->validateUserSession();
 <body>
     <header id="header" class="header"></header>
     <main>
+        <!-- Current Issues Section -->
+        <section class="current-issues">
+            <h3>Current Issues</h3>
+            <ul>
+                <li>Radicals may not display correctly in some Kanji due to ongoing updates.</li>
+                <li>Only one active session is allowed. Logging in on a new device will log out the previous session.</li>
+            </ul>
+        </section>
+
         <!-- Welcome Section -->
         <section class="welcome">
             <h1>Welcome, <?php echo htmlspecialchars($user['username']); ?>!</h1>
@@ -31,11 +40,6 @@ $user = $auth->validateUserSession();
             <p>This Kanji Learn website is currently under construction.</p>
             <p>Our learning system will help you progress step by step, starting with the most common Kanji used in JLPT N5.</p>
             <p><strong>Note:</strong> The radicals displayed within some Kanji may be incorrect as the site is in progress.</p>
-            
-            <figure>
-                <figcaption>Credit:</figcaption>
-                <p>"SVG by Ulrich Apel (KanjiVG), used under CC BY-SA 3.0."</p>
-            </figure>
         </section>
 
         <!-- Features Section -->
@@ -43,6 +47,7 @@ $user = $auth->validateUserSession();
             <h2>Upcoming Features</h2>
             <ul>
                 <li>Interactive quizzes for Kanji and their radicals.</li>
+                <li>Kanji for JLPT N4-N1.</li>
                 <li>Progress tracking and achievements.</li>
             </ul>
         </section>
@@ -66,7 +71,15 @@ $user = $auth->validateUserSession();
                 <li><a href="https://jisho.org" target="_blank" rel="noopener noreferrer">Jisho - Online Kanji Dictionary</a></li>
                 <li><a href="https://www.tofugu.com/" target="_blank" rel="noopener noreferrer">Tofugu - Learn Japanese Blog</a></li>
                 <li><a href="https://kanjialive.com" target="_blank" rel="noopener noreferrer">Kanji Alive - Learn Kanji</a></li>
+                <li><a href="https://tadoku.org/japanese/en/free-books-en/" target="_blank" rel="noopener noreferrer">Tadoku - Read Kanji Books</a></li>
             </ul>
+        </section>
+
+        <section class="credit">
+            <figure>
+                <figcaption>Credits:</figcaption>
+                <p>"SVG by Ulrich Apel (KanjiVG), used under CC BY-SA 3.0."</p>
+            </figure>
         </section>
     </main>
     <footer id="footer" class="footer"></footer>

@@ -59,12 +59,14 @@ class Authentication
      * Create a session for the user
      */
     public function createSession($userId, $token, $expiresAt = null) {
-        // Default the expiration to 1 week if not provided
+        // Delete any existing session for the user
+        $this->deleteExistingSessions($userId);
+
+        // Ensure expiration is 1 week from now
         if (!$expiresAt) {
-            $expiresAt = date('Y-m-d H:i:s', strtotime('+1 week')); // 1 week from now
+            $expiresAt = date('Y-m-d H:i:s', strtotime('+1 week')); 
         }
     
-        // Store the session in the database
         $sql = "INSERT INTO sessions (user_id, session_token, expires_at) VALUES (:user_id, :session_token, :expires_at)";
         $this->execute($sql, [
             ':user_id' => $userId,
@@ -72,9 +74,10 @@ class Authentication
             ':expires_at' => $expiresAt
         ]);
     
-        // Set the cookie with the session token (1 week expiration)
-        setcookie('session_token', $token, time() + (7 * 24 * 60 * 60), '/', '', false, true); // HTTPOnly for security
+        // Ensure cookie expiration also aligns with 1 week
+        setcookie('session_token', $token, time() + (7 * 24 * 60 * 60), '/', '', false, true);
     }
+    
     
 
     /**
@@ -120,7 +123,7 @@ class Authentication
         $session = $this->validateSession($sessionToken);
         if (!$session) {
             // If session is invalid or expired, redirect to login
-            setcookie('session_token', '', time() - 72000, '/'); // Expire the cookie
+            setcookie('session_token', '', time() - 3600, '/'); // Expire the cookie
             header('Location: login.php');
             exit;
         }
@@ -133,7 +136,7 @@ class Authentication
     
         if (!$user) {
             // If user not found, logout and redirect to login
-            setcookie('session_token', '', time() - 72000, '/'); // Expire the cookie
+            setcookie('session_token', '', time() - 3600, '/'); // Expire the cookie
             header('Location: login.php');
             exit;
         }
@@ -141,6 +144,10 @@ class Authentication
         return $user; // Return user data for use in the page
     }
     
+    private function deleteExistingSessions($userId) {
+        $sql = "DELETE FROM sessions WHERE user_id = :user_id";
+        $this->execute($sql, [':user_id' => $userId]);
+    }
 
 }
 $myDB = new DB();

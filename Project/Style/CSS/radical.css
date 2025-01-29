@@ -1,0 +1,172 @@
+/* Radical layout container */
+.radical-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 20px;
+}
+
+/* Mini Radical buttons container */
+.mini-radical-buttons-container {
+    width: 20%;
+    overflow-y: auto;
+    height: 600px;
+}
+
+.mini-radical-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.mini-radical {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.mini-radical:hover {
+    background-color: #007BFF;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Radical display container */
+.radical-display-container {
+    width: 75%;
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 10px;
+    border-left: solid 2px rgba(0, 0, 0, 0.404);
+    height: 80%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.radical-display {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    max-width: 100%;
+    width: auto;
+}
+
+/* Radical item layout */
+#radical-item {
+    text-align: center;
+}
+
+#radical, #radical-meaning {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #555;
+    margin-top: 20px;
+}
+
+#radical {
+    font-size: 9rem;
+}
+
+/* Navigation buttons */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin: 5px;
+    width: 100%;
+}
+
+.navigation-buttons button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.navigation-buttons button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.title {
+    position: fixed;
+    margin-left: 90px;
+    margin-top: 80px;
+    z-index: 1;
+    font-size: xx-large;
+}
+
+/* Radical index display */
+.radical-index {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    color: #333;
+    font-weight: bold;
+    margin-left: 30px;
+}
+
+/* Info section */
+.info {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: rgb(0, 0, 0);
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 250px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.info h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.info p {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .radical-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .mini-radical-buttons-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .radical-display-container {
+        width: 100%;
+    }
+
+    .navigation-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

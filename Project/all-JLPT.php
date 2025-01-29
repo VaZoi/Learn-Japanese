@@ -9,7 +9,7 @@ $user = $auth->validateUserSession();
 $currentIndex = isset($_GET['index']) ? (int)$_GET['index'] : 0;
 
 // Fetch Kanji data
-$kanjiData = $JLPT->fetchKanjiWithDetails('JLPT N5');
+$kanjiData = $JLPT->fetchAllKanjiWithDetails();
 
 // Ensure the index is within bounds
 if ($currentIndex < 0 || $currentIndex >= count($kanjiData)) {
@@ -27,11 +27,11 @@ if ($currentIndex < 0 || $currentIndex >= count($kanjiData)) {
     <script src="Style/Javascript/footer.js" defer></script>
     <link rel="stylesheet" href="Style/CSS/base.css">
     <link rel="stylesheet" href="Style/CSS/jlpt.css">
-    <title>JLPT N5 - Kanji</title>
+    <title>All JLPT - Kanji</title>
 </head>
 <body>
 <header id="header" class="header"></header>
-<p class="title">JLPT N5</p>
+<p class="title">All JLPT</p>
 <!-- info -->
 <section class="info">
         <h3>Info</h3>
