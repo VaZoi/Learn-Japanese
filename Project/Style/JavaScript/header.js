@@ -17,7 +17,7 @@ const headerContent = `
                 </div>
             </li>
             <li><a href="${baseurl}/Radicals.php">Radicals</a></li>
-            <li><a href="${baseurl}/JLPT-QUIZ.php">QUIZ</a></li>
+            <li><a href="${baseurl}/Kanji-practise.php">Practice</a></li>
             <li><a href="${baseurl}/account.php">Account</a></li>
             <li><a href="${baseurl}/Logout.php">Logout</a></li>
         </ul>

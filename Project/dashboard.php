@@ -23,7 +23,7 @@ $user = $auth->validateUserSession();
         <section class="current-issues">
             <h3>Current Issues</h3>
             <ul>
-                <li>Radicals may not display correctly in some Kanji due to ongoing updates.</li>
+                <li>Radicals can be missing or incorrect.</li>
                 <li>Only one active session is allowed. Logging in on a new device will log out the previous session.</li>
             </ul>
         </section>
