@@ -208,6 +208,12 @@
     font-weight: bold;
 }
 
+.construction {
+    font-size: 5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .kanji-layout {
