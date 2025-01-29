@@ -149,6 +149,44 @@ class Authentication
         $this->execute($sql, [':user_id' => $userId]);
     }
 
+    public function updateEmail($userId, $newEmail) {
+        $sql = "UPDATE users SET email = :email WHERE id = :user_id";
+        try {
+            $this->execute($sql, [
+                ':email' => $newEmail,
+                ':user_id' => $userId
+            ]);
+            return true;
+        } catch (PDOException $e) {
+            if ($e->getCode() == 23000) { // Handle duplicate email error
+                return "Email already exists.";
+            }
+            return $e->getMessage();
+        }
+    }
+
+    public function updatePassword($userId, $currentPassword, $newPassword) {
+        // Fetch the current password hash
+        $sql = "SELECT password_hash FROM users WHERE id = :user_id";
+        $stmt = $this->execute($sql, [':user_id' => $userId]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if (!$user || !password_verify($currentPassword, $user['password_hash'])) {
+            return "Current password is incorrect.";
+        }
+    
+        // Hash new password
+        $newPasswordHash = password_hash($newPassword, PASSWORD_ARGON2ID);
+        $sql = "UPDATE users SET password_hash = :password WHERE id = :user_id";
+        $this->execute($sql, [
+            ':password' => $newPasswordHash,
+            ':user_id' => $userId
+        ]);
+    
+        return true;
+    }
+    
+
 }
 $myDB = new DB();
 $auth = new Authentication($myDB);

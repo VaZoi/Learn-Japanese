@@ -1,0 +1,106 @@
+/* Body Styling to center everything */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    margin: 0; /* Remove default body margin */
+}
+
+main {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    width: 30%; /* Adjust the width as necessary */
+    min-width: 320px; /* Optional: Min-width for small screens */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Welcome Section (User Info) */
+.welcome {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.welcome h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Account Settings Section */
+.account-settings {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.account-settings h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.account-settings form {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-settings label {
+    font-size: 16px;
+    color: #333;
+    margin: 5px;
+}
+
+.account-settings input[type="email"],
+.account-settings input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 5px;
+}
+
+.account-settings button {
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 40%;
+    margin: 10px;
+}
+
+.account-settings button:hover {
+    background-color: #0056b3;
+}
+
+/* Success/Error Messages */
+.success-message,
+.error-message {
+    font-size: 16px;
+    color: green;
+    background-color: #e7f9e7;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.error-message {
+    color: red;
+    background-color: #f8d7da;
+}
